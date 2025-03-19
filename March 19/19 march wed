@@ -1,1 +1,396 @@
+[mca@localhost ~]$ mySQL 24mca60
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 24
+Server version: 8.0.36 Source distribution
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use 24mca60
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_24mca60 |
++-------------------+
+| bookissues        |
+| books             |
+| departments       |
+| students          |
++-------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from bookissues;
++--------+-----------+------------+-------------+-------+
+| bookid | studentid | issue_date | return_date | fine  |
++--------+-----------+------------+-------------+-------+
+|      1 |       101 | 2025-03-03 | 2025-03-15  | 50.00 |
+|      2 |       102 | 2025-03-13 | 2025-03-25  | 60.00 |
+|      3 |       103 | 2025-03-15 | 2025-03-20  | 65.00 |
+|      4 |       104 | 2025-03-16 | 2025-03-21  | 75.00 |
+|      4 |       107 | 2025-03-17 | 2025-03-23  | 50.00 |
+|      5 |       105 | 2025-03-17 | 2025-03-22  | 85.00 |
+|      6 |       106 | 2025-03-18 | 2025-03-23  | 80.00 |
++--------+-----------+------------+-------------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from books;
++--------+---------------------------+--------------------+--------+
+| bookid | title                     | author             | price  |
++--------+---------------------------+--------------------+--------+
+|      1 | Database Systems          | Ramwz Elsmari      | 550.00 |
+|      2 | Operating System Concepts | Silberschatz       | 770.00 |
+|      3 | Computer Networks         | Andrew S.Tanenbaum | 900.00 |
+|      4 | Algorithms                | Cormen             | 110.00 |
+|      5 | Wings of Fire             | A.P.J Abdul Kalam  | 900.00 |
+|      6 | Harry potter              | Silberschatz       | 450.00 |
+|      7 | Spiderman                 | Cormen             | 700.00 |
+|      8 | Half Girlfriend           | Chethan Bhagath    | 360.00 |
+|      9 | Alchemist                 | Poulochole         | 800.00 |
+|     10 | Divine life               | Swami sivanada     | 450.00 |
++--------+---------------------------+--------------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> alter books set price=910 where bookid=3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'books set price=910 where bookid=3' at line 1
+mysql> update  books set price=910 where bookid=3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from books;
++--------+---------------------------+--------------------+--------+
+| bookid | title                     | author             | price  |
++--------+---------------------------+--------------------+--------+
+|      1 | Database Systems          | Ramwz Elsmari      | 550.00 |
+|      2 | Operating System Concepts | Silberschatz       | 770.00 |
+|      3 | Computer Networks         | Andrew S.Tanenbaum | 910.00 |
+|      4 | Algorithms                | Cormen             | 110.00 |
+|      5 | Wings of Fire             | A.P.J Abdul Kalam  | 900.00 |
+|      6 | Harry potter              | Silberschatz       | 450.00 |
+|      7 | Spiderman                 | Cormen             | 700.00 |
+|      8 | Half Girlfriend           | Chethan Bhagath    | 360.00 |
+|      9 | Alchemist                 | Poulochole         | 800.00 |
+|     10 | Divine life               | Swami sivanada     | 450.00 |
++--------+---------------------------+--------------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from bookissues;
++--------+-----------+------------+-------------+-------+
+| bookid | studentid | issue_date | return_date | fine  |
++--------+-----------+------------+-------------+-------+
+|      1 |       101 | 2025-03-03 | 2025-03-15  | 50.00 |
+|      2 |       102 | 2025-03-13 | 2025-03-25  | 60.00 |
+|      3 |       103 | 2025-03-15 | 2025-03-20  | 65.00 |
+|      4 |       104 | 2025-03-16 | 2025-03-21  | 75.00 |
+|      4 |       107 | 2025-03-17 | 2025-03-23  | 50.00 |
+|      5 |       105 | 2025-03-17 | 2025-03-22  | 85.00 |
+|      6 |       106 | 2025-03-18 | 2025-03-23  | 80.00 |
++--------+-----------+------------+-------------+-------+
+7 rows in set (0.00 sec)
+
+mysql> insert into bookissues (bookid,studentid,issue_date,fine) values(10,108,'2025-03-19',25);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from bookissues;
++--------+-----------+------------+-------------+-------+
+| bookid | studentid | issue_date | return_date | fine  |
++--------+-----------+------------+-------------+-------+
+|      1 |       101 | 2025-03-03 | 2025-03-15  | 50.00 |
+|      2 |       102 | 2025-03-13 | 2025-03-25  | 60.00 |
+|      3 |       103 | 2025-03-15 | 2025-03-20  | 65.00 |
+|      4 |       104 | 2025-03-16 | 2025-03-21  | 75.00 |
+|      4 |       107 | 2025-03-17 | 2025-03-23  | 50.00 |
+|      5 |       105 | 2025-03-17 | 2025-03-22  | 85.00 |
+|      6 |       106 | 2025-03-18 | 2025-03-23  | 80.00 |
+|     10 |       108 | 2025-03-19 | NULL        | 25.00 |
++--------+-----------+------------+-------------+-------+
+8 rows in set (0.00 sec)
+
+mysql> insert into bookissues (bookid,studentid,issue_date,fine) values(9,108,'2025-03-11',35);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into bookissues values(1,109,'2025-03-18','2025-03-25',30);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from students;
++-----------+---------+------+------+
+| studentid | name    | age  | dno  |
++-----------+---------+------+------+
+|       101 | Nayana  |   24 |    1 |
+|       102 | Sneha   |   22 |    2 |
+|       103 | Yusra   |   22 |    3 |
+|       104 | Akhila  |   26 |    1 |
+|       105 | NEJMA   |   22 |    3 |
+|       106 | Nadhi   |   28 |    2 |
+|       107 | Ann     |   25 |    3 |
+|       108 | Jalala  |   23 |    2 |
+|       109 | Anan    |   24 |    1 |
+|       110 | Safwana |   21 |    2 |
++-----------+---------+------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from students group by dno having dno>3;
+'ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column '24mca60.students.studentid' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select dno,count(studentid) as total_no_of_students from students group by dno having count(studentid)>3;
++------+----------------------+
+| dno  | total_no_of_students |
++------+----------------------+
+|    2 |                    4 |
++------+----------------------+
+1 row in set (0.00 sec)
+
+mysql> select dno,count(studentid) as total_no_of_students from students group by dno having count(studentid)>2;
++------+----------------------+
+| dno  | total_no_of_students |
++------+----------------------+
+|    1 |                    3 |
+|    2 |                    4 |
+|    3 |                    3 |
++------+----------------------+
+3 rows in set (0.01 sec)
+
+mysql> select dno,count(studentid) as total_no_of_students from students group by studentid;
++------+----------------------+
+| dno  | total_no_of_students |
++------+----------------------+
+|    1 |                    1 |
+|    2 |                    1 |
+|    3 |                    1 |
+|    1 |                    1 |
+|    3 |                    1 |
+|    2 |                    1 |
+|    3 |                    1 |
+|    2 |                    1 |
+|    1 |                    1 |
+|    2 |                    1 |
++------+----------------------+
+10 rows in set (0.00 sec)
+
+mysql> select dno,count(studentid) from students group by dno;
++------+------------------+
+| dno  | count(studentid) |
++------+------------------+
+|    1 |                3 |
+|    2 |                4 |
+|    3 |                3 |
++------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> select dno,count(studentid) as  total_no_of_students from students group by dno;
++------+----------------------+
+| dno  | total_no_of_students |
++------+----------------------+
+|    1 |                    3 |
+|    2 |                    4 |
+|    3 |                    3 |
++------+----------------------+
+3 rows in set (0.00 sec)
+
+mysql> select studentid,count(*) as  total_no_of_books from bookissues group by studentid;
++-----------+-------------------+
+| studentid | total_no_of_books |
++-----------+-------------------+
+|       101 |                 1 |
+|       102 |                 1 |
+|       103 |                 1 |
+|       104 |                 1 |
+|       105 |                 1 |
+|       106 |                 1 |
+|       107 |                 1 |
+|       108 |                 2 |
+|       109 |                 1 |
++-----------+-------------------+
+9 rows in set (0.00 sec)
+
+mysql> select author,avg(price) from books group by author;
++--------------------+------------+
+| author             | avg(price) |
++--------------------+------------+
+| Ramwz Elsmari      | 550.000000 |
+| Silberschatz       | 610.000000 |
+| Andrew S.Tanenbaum | 910.000000 |
+| Cormen             | 405.000000 |
+| A.P.J Abdul Kalam  | 900.000000 |
+| Chethan Bhagath    | 360.000000 |
+| Poulochole         | 800.000000 |
+| Swami sivanada     | 450.000000 |
++--------------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from books;
++--------+---------------------------+--------------------+--------+
+| bookid | title                     | author             | price  |
++--------+---------------------------+--------------------+--------+
+|      1 | Database Systems          | Ramwz Elsmari      | 550.00 |
+|      2 | Operating System Concepts | Silberschatz       | 770.00 |
+|      3 | Computer Networks         | Andrew S.Tanenbaum | 910.00 |
+|      4 | Algorithms                | Cormen             | 110.00 |
+|      5 | Wings of Fire             | A.P.J Abdul Kalam  | 900.00 |
+|      6 | Harry potter              | Silberschatz       | 450.00 |
+|      7 | Spiderman                 | Cormen             | 700.00 |
+|      8 | Half Girlfriend           | Chethan Bhagath    | 360.00 |
+|      9 | Alchemist                 | Poulochole         | 800.00 |
+|     10 | Divine life               | Swami sivanada     | 450.00 |
++--------+---------------------------+--------------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select title,price from books order by price desc;
++---------------------------+--------+
+| title                     | price  |
++---------------------------+--------+
+| Computer Networks         | 910.00 |
+| Wings of Fire             | 900.00 |
+| Alchemist                 | 800.00 |
+| Operating System Concepts | 770.00 |
+| Spiderman                 | 700.00 |
+| Database Systems          | 550.00 |
+| Harry potter              | 450.00 |
+| Divine life               | 450.00 |
+| Half Girlfriend           | 360.00 |
+| Algorithms                | 110.00 |
++---------------------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select dno,count(*) from bookissues group by departments;
+ERROR 1054 (42S22): Unknown column 'dno' in 'field list'
+mysql> select dno,count(*) from department group by bookissues;
+ERROR 1146 (42S02): Table '24mca60.department' doesn't exist
+mysql> select dno,count(*) from departments group by bookissues;
+ERROR 1054 (42S22): Unknown column 'bookissues' in 'group statement'
+mysql> select dno,count(*) from bookissues group by departments;
+ERROR 1054 (42S22): Unknown column 'dno' in 'field list'
+mysql> select dno,count(bookid) as issued_books from students join bookissues on students.studentid=bookissues.studentid group by dno;
++------+--------------+
+| dno  | issued_books |
++------+--------------+
+|    1 |            3 |
+|    2 |            4 |
+|    3 |            3 |
++------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from students;
++-----------+---------+------+------+
+| studentid | name    | age  | dno  |
++-----------+---------+------+------+
+|       101 | Nayana  |   24 |    1 |
+|       102 | Sneha   |   22 |    2 |
+|       103 | Yusra   |   22 |    3 |
+|       104 | Akhila  |   26 |    1 |
+|       105 | NEJMA   |   22 |    3 |
+|       106 | Nadhi   |   28 |    2 |
+|       107 | Ann     |   25 |    3 |
+|       108 | Jalala  |   23 |    2 |
+|       109 | Anan    |   24 |    1 |
+|       110 | Safwana |   21 |    2 |
++-----------+---------+------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from bookisssues;
+ERROR 1146 (42S02): Table '24mca60.bookisssues' doesn't exist
+mysql> select * from bookissues;
++--------+-----------+------------+-------------+-------+
+| bookid | studentid | issue_date | return_date | fine  |
++--------+-----------+------------+-------------+-------+
+|      1 |       101 | 2025-03-03 | 2025-03-15  | 50.00 |
+|      1 |       109 | 2025-03-18 | 2025-03-25  | 30.00 |
+|      2 |       102 | 2025-03-13 | 2025-03-25  | 60.00 |
+|      3 |       103 | 2025-03-15 | 2025-03-20  | 65.00 |
+|      4 |       104 | 2025-03-16 | 2025-03-21  | 75.00 |
+|      4 |       107 | 2025-03-17 | 2025-03-23  | 50.00 |
+|      5 |       105 | 2025-03-17 | 2025-03-22  | 85.00 |
+|      6 |       106 | 2025-03-18 | 2025-03-23  | 80.00 |
+|      9 |       108 | 2025-03-11 | NULL        | 35.00 |
+|     10 |       108 | 2025-03-19 | NULL        | 25.00 |
++--------+-----------+------------+-------------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select issue_date,count(*) from bookissues group by issue_date;
++------------+----------+
+| issue_date | count(*) |
++------------+----------+
+| 2025-03-03 |        1 |
+| 2025-03-18 |        2 |
+| 2025-03-13 |        1 |
+| 2025-03-15 |        1 |
+| 2025-03-16 |        1 |
+| 2025-03-17 |        2 |
+| 2025-03-11 |        1 |
+| 2025-03-19 |        1 |
++------------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select issue_date,count(bookid) from bookissues group by issue_date;
++------------+---------------+
+| issue_date | count(bookid) |
++------------+---------------+
+| 2025-03-03 |             1 |
+| 2025-03-18 |             2 |
+| 2025-03-13 |             1 |
+| 2025-03-15 |             1 |
+| 2025-03-16 |             1 |
+| 2025-03-17 |             2 |
+| 2025-03-11 |             1 |
+| 2025-03-19 |             1 |
++------------+---------------+
+8 rows in set (0.00 sec)
+
+mysql> select studentid,count(bookid) from bookissues group by studentid having count(bookid)>2;
+Empty set (0.00 sec)
+
+mysql> select studentid,count(bookid) from bookissues group by studentid having count(bookid)>1;
++-----------+---------------+
+| studentid | count(bookid) |
++-----------+---------------+
+|       108 |             2 |
++-----------+---------------+
+1 row in set (0.01 sec)
+
+mysql> select author,count(bookid) from books group by author having count(bookid)>1;
++--------------+---------------+
+| author       | count(bookid) |
++--------------+---------------+
+| Silberschatz |             2 |
+| Cormen       |             2 |
++--------------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from books;
++--------+---------------------------+--------------------+--------+
+| bookid | title                     | author             | price  |
++--------+---------------------------+--------------------+--------+
+|      1 | Database Systems          | Ramwz Elsmari      | 550.00 |
+|      2 | Operating System Concepts | Silberschatz       | 770.00 |
+|      3 | Computer Networks         | Andrew S.Tanenbaum | 910.00 |
+|      4 | Algorithms                | Cormen             | 110.00 |
+|      5 | Wings of Fire             | A.P.J Abdul Kalam  | 900.00 |
+|      6 | Harry potter              | Silberschatz       | 450.00 |
+|      7 | Spiderman                 | Cormen             | 700.00 |
+|      8 | Half Girlfriend           | Chethan Bhagath    | 360.00 |
+|      9 | Alchemist                 | Poulochole         | 800.00 |
+|     10 | Divine life               | Swami sivanada     | 450.00 |
++--------+---------------------------+--------------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> 
+mysql> select dno,count(bookid) from students join bookissues on students.studentid=bookissues.studentid group by dno having count(bookid)>1;
++------+---------------+
+| dno  | count(bookid) |
++------+---------------+
+|    1 |             3 |
+|    2 |             4 |
+|    3 |             3 |
++------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> 
+
 
