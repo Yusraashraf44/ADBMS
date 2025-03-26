@@ -1,0 +1,244 @@
+[mca@localhost ~]$ mySQL 24mca60
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 55
+Server version: 8.0.36 Source distribution
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use 24mca60
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> create view studentsview as(select studentid,name from students);
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from students;
++-----------+---------+------+------+
+| studentid | name    | age  | dno  |
++-----------+---------+------+------+
+|       101 | Nayana  |   24 |    1 |
+|       102 | Sneha   |   22 |    2 |
+|       103 | Yusra   |   22 |    3 |
+|       104 | Akhila  |   26 |    1 |
+|       105 | NEJMA   |   22 |    3 |
+|       106 | Nadhi   |   28 |    2 |
+|       107 | Ann     |   25 |    3 |
+|       108 | Jalala  |   23 |    2 |
+|       109 | Anan    |   24 |    1 |
+|       110 | Safwana |   21 |    2 |
++-----------+---------+------+------+
+10 rows in set (0.00 sec)
+
+mysql> create view studentview as(select studentid,name from students);
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from students;
++-----------+---------+------+------+
+| studentid | name    | age  | dno  |
++-----------+---------+------+------+
+|       101 | Nayana  |   24 |    1 |
+|       102 | Sneha   |   22 |    2 |
+|       103 | Yusra   |   22 |    3 |
+|       104 | Akhila  |   26 |    1 |
+|       105 | NEJMA   |   22 |    3 |
+|       106 | Nadhi   |   28 |    2 |
+|       107 | Ann     |   25 |    3 |
+|       108 | Jalala  |   23 |    2 |
+|       109 | Anan    |   24 |    1 |
+|       110 | Safwana |   21 |    2 |
++-----------+---------+------+------+
+10 rows in set (0.00 sec)
+
+mysql> create view studentsview as(select studentid,name from students);
+ERROR 1050 (42S01): Table 'studentsview' already exists
+mysql> select * from students view;
++-----------+---------+------+------+
+| studentid | name    | age  | dno  |
++-----------+---------+------+------+
+|       101 | Nayana  |   24 |    1 |
+|       102 | Sneha   |   22 |    2 |
+|       103 | Yusra   |   22 |    3 |
+|       104 | Akhila  |   26 |    1 |
+|       105 | NEJMA   |   22 |    3 |
+|       106 | Nadhi   |   28 |    2 |
+|       107 | Ann     |   25 |    3 |
+|       108 | Jalala  |   23 |    2 |
+|       109 | Anan    |   24 |    1 |
+|       110 | Safwana |   21 |    2 |
++-----------+---------+------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from studentsview;
++-----------+---------+
+| studentid | name    |
++-----------+---------+
+|       101 | Nayana  |
+|       102 | Sneha   |
+|       103 | Yusra   |
+|       104 | Akhila  |
+|       105 | NEJMA   |
+|       106 | Nadhi   |
+|       107 | Ann     |
+|       108 | Jalala  |
+|       109 | Anan    |
+|       110 | Safwana |
++-----------+---------+
+10 rows in set (0.01 sec)
+
+mysql> select * from students join departments on students.dno=departments.dno join bookissues on bookissues.studentid=books.studentid;
+ERROR 1054 (42S22): Unknown column 'books.studentid' in 'on clause'
+mysql> select * from students join departments on students.dno=departments.dno join bookissues on bookissues.bookid=books.bookid;
+ERROR 1054 (42S22): Unknown column 'books.bookid' in 'on clause'
+mysql> select * from books;
++--------+---------------------------+--------------------+--------+
+| bookid | title                     | author             | price  |
++--------+---------------------------+--------------------+--------+
+|      1 | Database Systems          | Ramwz Elsmari      | 550.00 |
+|      2 | Operating System Concepts | Silberschatz       | 770.00 |
+|      3 | Computer Networks         | Andrew S.Tanenbaum | 910.00 |
+|      4 | Algorithms                | Cormen             | 110.00 |
+|      5 | Wings of Fire             | A.P.J Abdul Kalam  | 900.00 |
+|      6 | Harry potter              | Silberschatz       | 450.00 |
+|      7 | Spiderman                 | Cormen             | 700.00 |
+|      8 | Half Girlfriend           | Chethan Bhagath    | 360.00 |
+|      9 | Alchemist                 | Poulochole         | 800.00 |
+|     10 | Divine life               | Swami sivanada     | 450.00 |
++--------+---------------------------+--------------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from students join departments on students.dno=departments.dno join bookissues on bookissues.bookid=books.bookid;
+ERROR 1054 (42S22): Unknown column 'books.bookid' in 'on clause'
+mysql> select 
+    -> 
+    -> 
+    -> 
+    -> 
+    -> 
+    -> 
+    -> 
+    -> * from departments;
++-----+-------+
+| dno | dname |
++-----+-------+
+|   1 | MCA   |
+|   2 | BCA   |
+|   3 | CS    |
++-----+-------+
+3 rows in set (0.00 sec)
+mysql> select         * from departments;
++-----+-------+ from students join departments on students.dno=departments.dno join bookissues on bookissues.bookid=books.bookid;
+| dno | dname |
++-----+-------+
+|   1 | MCA   |
+|   2 | BCA   |
+|   3 | CS    |
++-----+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from students join departments on students.dno=departments.dno join bookissues on bookissues.studentid=students.studentid join books on bookissues.bookid=books.bookid;
++-----------+--------+------+------+-----+-------+--------+-----------+------------+-------------+-------+--------+---------------------------+--------------------+--------+
+| studentid | name   | age  | dno  | dno | dname | bookid | studentid | issue_date | return_date | fine  | bookid | title                     | author             | price  |
++-----------+--------+------+------+-----+-------+--------+-----------+------------+-------------+-------+--------+---------------------------+--------------------+--------+
+|       104 | Akhila |   26 |    1 |   1 | MCA   |      4 |       104 | 2025-03-16 | 2025-03-21  | 75.00 |      4 | Algorithms                | Cormen             | 110.00 |
+|       109 | Anan   |   24 |    1 |   1 | MCA   |      1 |       109 | 2025-03-18 | 2025-03-25  | 30.00 |      1 | Database Systems          | Ramwz Elsmari      | 550.00 |
+|       101 | Nayana |   24 |    1 |   1 | MCA   |      1 |       101 | 2025-03-03 | 2025-03-15  | 50.00 |      1 | Database Systems          | Ramwz Elsmari      | 550.00 |
+|       108 | Jalala |   23 |    2 |   2 | BCA   |     10 |       108 | 2025-03-19 | NULL        | 25.00 |     10 | Divine life               | Swami sivanada     | 450.00 |
+|       108 | Jalala |   23 |    2 |   2 | BCA   |      9 |       108 | 2025-03-11 | NULL        | 35.00 |      9 | Alchemist                 | Poulochole         | 800.00 |
+|       106 | Nadhi  |   28 |    2 |   2 | BCA   |      6 |       106 | 2025-03-18 | 2025-03-23  | 80.00 |      6 | Harry potter              | Silberschatz       | 450.00 |
+|       102 | Sneha  |   22 |    2 |   2 | BCA   |      2 |       102 | 2025-03-13 | 2025-03-25  | 60.00 |      2 | Operating System Concepts | Silberschatz       | 770.00 |
+|       105 | NEJMA  |   22 |    3 |   3 | CS    |      5 |       105 | 2025-03-17 | 2025-03-22  | 85.00 |      5 | Wings of Fire             | A.P.J Abdul Kalam  | 900.00 |
+|       107 | Ann    |   25 |    3 |   3 | CS    |      4 |       107 | 2025-03-17 | 2025-03-23  | 50.00 |      4 | Algorithms                | Cormen             | 110.00 |
+|       103 | Yusra  |   22 |    3 |   3 | CS    |      3 |       103 | 2025-03-15 | 2025-03-20  | 65.00 |      3 | Computer Networks         | Andrew S.Tanenbaum | 910.00 |
++-----------+--------+------+------+-----+-------+--------+-----------+------------+-------------+-------+--------+---------------------------+--------------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> create view library as (select * from students join departments on students.dno=departments.dno join bookissues on bookissues.studentid=students.studentid join books on bookissues.bookid=books.bookid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create view library as (select * from students join departments on students.dno=departments.dno join bookissues on bookissues.studentid=students.studentid join books on bookissues.bookid=books.bookid);
+ERROR 1060 (42S21): Duplicate column name 'dno'
+mysql> select * from students natural  join departments natural  join bookissues natural  join books;
++--------+-----------+------+--------+------+-------+------------+-------------+-------+---------------------------+--------------------+--------+
+| bookid | studentid | dno  | name   | age  | dname | issue_date | return_date | fine  | title                     | author             | price  |
++--------+-----------+------+--------+------+-------+------------+-------------+-------+---------------------------+--------------------+--------+
+|      4 |       104 |    1 | Akhila |   26 | MCA   | 2025-03-16 | 2025-03-21  | 75.00 | Algorithms                | Cormen             | 110.00 |
+|      1 |       109 |    1 | Anan   |   24 | MCA   | 2025-03-18 | 2025-03-25  | 30.00 | Database Systems          | Ramwz Elsmari      | 550.00 |
+|      1 |       101 |    1 | Nayana |   24 | MCA   | 2025-03-03 | 2025-03-15  | 50.00 | Database Systems          | Ramwz Elsmari      | 550.00 |
+|     10 |       108 |    2 | Jalala |   23 | BCA   | 2025-03-19 | NULL        | 25.00 | Divine life               | Swami sivanada     | 450.00 |
+|      9 |       108 |    2 | Jalala |   23 | BCA   | 2025-03-11 | NULL        | 35.00 | Alchemist                 | Poulochole         | 800.00 |
+|      6 |       106 |    2 | Nadhi  |   28 | BCA   | 2025-03-18 | 2025-03-23  | 80.00 | Harry potter              | Silberschatz       | 450.00 |
+|      2 |       102 |    2 | Sneha  |   22 | BCA   | 2025-03-13 | 2025-03-25  | 60.00 | Operating System Concepts | Silberschatz       | 770.00 |
+|      5 |       105 |    3 | NEJMA  |   22 | CS    | 2025-03-17 | 2025-03-22  | 85.00 | Wings of Fire             | A.P.J Abdul Kalam  | 900.00 |
+|      4 |       107 |    3 | Ann    |   25 | CS    | 2025-03-17 | 2025-03-23  | 50.00 | Algorithms                | Cormen             | 110.00 |
+|      3 |       103 |    3 | Yusra  |   22 | CS    | 2025-03-15 | 2025-03-20  | 65.00 | Computer Networks         | Andrew S.Tanenbaum | 910.00 |
++--------+-----------+------+--------+------+-------+------------+-------------+-------+---------------------------+--------------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> create view libary as(select * from students natural  join departments natural  join bookissues natural  join books);
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from library;
+ERROR 1146 (42S02): Table '24mca60.library' doesn't exist
+mysql> select * from libary;
++--------+-----------+------+--------+------+-------+------------+-------------+-------+---------------------------+--------------------+--------+
+| bookid | studentid | dno  | name   | age  | dname | issue_date | return_date | fine  | title                     | author             | price  |
++--------+-----------+------+--------+------+-------+------------+-------------+-------+---------------------------+--------------------+--------+
+|      4 |       104 |    1 | Akhila |   26 | MCA   | 2025-03-16 | 2025-03-21  | 75.00 | Algorithms                | Cormen             | 110.00 |
+|      1 |       109 |    1 | Anan   |   24 | MCA   | 2025-03-18 | 2025-03-25  | 30.00 | Database Systems          | Ramwz Elsmari      | 550.00 |
+|      1 |       101 |    1 | Nayana |   24 | MCA   | 2025-03-03 | 2025-03-15  | 50.00 | Database Systems          | Ramwz Elsmari      | 550.00 |
+|     10 |       108 |    2 | Jalala |   23 | BCA   | 2025-03-19 | NULL        | 25.00 | Divine life               | Swami sivanada     | 450.00 |
+|      9 |       108 |    2 | Jalala |   23 | BCA   | 2025-03-11 | NULL        | 35.00 | Alchemist                 | Poulochole         | 800.00 |
+|      6 |       106 |    2 | Nadhi  |   28 | BCA   | 2025-03-18 | 2025-03-23  | 80.00 | Harry potter              | Silberschatz       | 450.00 |
+|      2 |       102 |    2 | Sneha  |   22 | BCA   | 2025-03-13 | 2025-03-25  | 60.00 | Operating System Concepts | Silberschatz       | 770.00 |
+|      5 |       105 |    3 | NEJMA  |   22 | CS    | 2025-03-17 | 2025-03-22  | 85.00 | Wings of Fire             | A.P.J Abdul Kalam  | 900.00 |
+|      4 |       107 |    3 | Ann    |   25 | CS    | 2025-03-17 | 2025-03-23  | 50.00 | Algorithms                | Cormen             | 110.00 |
+|      3 |       103 |    3 | Yusra  |   22 | CS    | 2025-03-15 | 2025-03-20  | 65.00 | Computer Networks         | Andrew S.Tanenbaum | 910.00 |
++--------+-----------+------+--------+------+-------+------------+-------------+-------+---------------------------+--------------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from libary;
++--------+-----------+------+--------+------+-------+------------+-------------+-------+---------------------------+--------------------+--------+
+| bookid | studentid | dno  | name   | age  | dname | issue_date | return_date | fine  | title                     | author             | price  |
++--------+-----------+------+--------+------+-------+------------+-------------+-------+---------------------------+--------------------+--------+
+|      4 |       104 |    1 | Akhila |   26 | MCA   | 2025-03-16 | 2025-03-21  | 75.00 | Algorithms                | Cormen             | 110.00 |
+|      1 |       109 |    1 | Anan   |   24 | MCA   | 2025-03-18 | 2025-03-25  | 30.00 | Database Systems          | Ramwz Elsmari      | 550.00 |
+|      1 |       101 |    1 | Nayana |   24 | MCA   | 2025-03-03 | 2025-03-15  | 50.00 | Database Systems          | Ramwz Elsmari      | 550.00 |
+|     10 |       108 |    2 | Jalala |   23 | BCA   | 2025-03-19 | NULL        | 25.00 | Divine life               | Swami sivanada     | 450.00 |
+|      9 |       108 |    2 | Jalala |   23 | BCA   | 2025-03-11 | NULL        | 35.00 | Alchemist                 | Poulochole         | 800.00 |
+|      6 |       106 |    2 | Nadhi  |   28 | BCA   | 2025-03-18 | 2025-03-23  | 80.00 | Harry potter              | Silberschatz       | 450.00 |
+|      2 |       102 |    2 | Sneha  |   22 | BCA   | 2025-03-13 | 2025-03-25  | 60.00 | Operating System Concepts | Silberschatz       | 770.00 |
+|      5 |       105 |    3 | NEJMA  |   22 | CS    | 2025-03-17 | 2025-03-22  | 85.00 | Wings of Fire             | A.P.J Abdul Kalam  | 900.00 |
+|      4 |       107 |    3 | Ann    |   25 | CS    | 2025-03-17 | 2025-03-23  | 50.00 | Algorithms                | Cormen             | 110.00 |
+|      3 |       103 |    3 | Yusra  |   22 | CS    | 2025-03-15 | 2025-03-20  | 65.00 | Computer Networks         | Andrew S.Tanenbaum | 910.00 |
++--------+-----------+------+--------+------+-------+------------+-------------+-------+---------------------------+--------------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select studentid,count(bookid) from library;
+ERROR 1146 (42S02): Table '24mca60.library' doesn't exist
+mysql> select studentid,count(bookid) from libary;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column '24mca60.libary.studentid'; this is incompatible with sql_mode=only_full_group_by
+mysql> select studentid,count(bookid) group by from libary;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from libary' at line 1
+mysql> select studentid,count(bookid) group by studentid having count(bookid) from libary;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from libary' at line 1
+mysql> select studentid,count(bookid) from libary group by studentid having count(bookid)>2;
+Empty set (0.00 sec)
+
+mysql> select studentid,count(bookid) from libary group by studentid having count(bookid)>1;
++-----------+---------------+
+| studentid | count(bookid) |
++-----------+---------------+
+|       108 |             2 |
++-----------+---------------+
+1 row in set (0.00 sec)
+
+mysql> insert into students values(010,'Safwana',21,2);
+
+
