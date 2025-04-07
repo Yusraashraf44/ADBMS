@@ -1,0 +1,74 @@
+-- 
+-- Roll No: 60
+-- Name: YUSRA K V
+-- Program: <program name>
+-- 
+
+
+--
+-- Table structure for table books
+--
+create table books(accno INT AUTO_INCREMENT PRIMARY KEY,title VARCHAR(100) NOT NULL UNIQUE,author VARCHAR(50) NOT NULL,price float(6,2),type ENUM('lending', 'reference'),availability ENUM('yes', 'no'),publisherid INT,FOREIGN KEY (publisherid) REFERENCES publishers(publisherid));
+
+--
+-- Table structure for table publishers
+--
+
+create table publishers(publisherid INT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(50) NOT NULL UNIQUE,address VARCHAR(100));
+
+
+--
+-- Table structure for table members
+--
+create table members(memberid INT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(50) NOT NULL,address VARCHAR(100),type ENUM('staff','student'));
+
+
+--
+-- Table structure for table issues
+--
+
+create table issues(issueid INT AUTO_INCREMENT PRIMARY KEY,memberid INT,accno INT,issuedate DATE,duedate DATE,FOREIGN KEY (memberid) REFERENCES members(memberid),FOREIGN KEY (accno) REFERENCES books(accno));
+
+
+
+--
+-- Table structure for table returns
+--
+create table returns(returnid INT AUTO_INCREMENT PRIMARY KEY,memberid INT,accno INT,returndate DATE,fine INT DEFAULT 0 CHECK (fine >= 0),FOREIGN KEY (memberid) REFERENCES members(memberid),FOREIGN KEY (accno) REFERENCES books(accno));
+
+
+
+-- ---------create/alter statement commands----------- # This line may be removed in the actual file
+
+--
+-- Dumping data for table publishers
+--
+insert into publishers (name, address) VALUES('Penguin Random House', '1745 Broadway, New York, NY'),('HarperCollins', '195 Broadway, New York, NY'),('Simon & Schuster', '1230 Avenue of the Americas, New York, NY'),('Hachette Book Group', '1290 Avenue of the Americas, New York, NY'),('Macmillan', '120 Broadway, New York, NY'),('Scholastic', '557 Broadway, New York, NY');
+
+
+--
+-- Dumping data for table books
+--
+insert into books (title, author, price, type, availability, publisherid) VALUES('The Great Gatsby', 'F. Scott Fitzgerald', 10.99, 'lending', 'yes', 1),('To Kill a Mockingbird', 'Harper Lee', 12.50, 'reference', 'no', 2),('1984', 'George Orwell', 15.75, 'lending', 'yes', 3),('The Catcher in the Rye', 'J.D. Salinger', 9.99, 'reference', 'no', 4),('The Hobbit', 'J.R.R. Tolkien', 14.20, 'lending', 'yes', 5),('Harry Potter', 'J.K. Rowling', 20.00, 'lending', 'yes', 6);
+
+--
+-- Dumping data for table members
+--
+insert into members (name, address, type) VALUES ('Alice Johnson', '123 Maple Street', 'staff'),('Bob Smith', '456 Oak Avenue', 'student'),('Charlie Brown', '789 Pine Road', 'student'),('David Williams', '321 Birch Blvd', 'staff'),('Eva Davis', '654 Cedar Lane', 'student'),('Frank Moore', '987 Elm Street', 'staff');
+--
+-- Dumping data for table issues
+--
+insert into issues (memberid, accno, issuedate, duedate) VALUES (2, 1, '2025-04-01', '2025-04-15'),(3, 2, '2025-04-02', '2025-04-16'),(4, 3, '2025-04-03', '2025-04-17'),(5, 4, '2025-04-04', '2025-04-18'),(6, 5, '2025-04-05', '2025-04-19'),(1, 6, '2025-04-06', '2025-04-20');
+--
+-- Dumping data for table returns
+--
+insert into returns (memberid, accno, returndate, fine) VALUES (2, 1, '2025-04-10', 0),(3, 2, '2025-04-18', 5),(4, 3, '2025-04-20', 0),(5, 4, '2025-04-22', 10),(6, 5, '2025-04-25', 0),(1, 6, '2025-04-28', 3);
+
+-- --------insert/update statement commands----------- # This line may be removed in the actcual file
+
+--
+-- SQl Query Statements
+--
+
+-- -----SQL query statments preceeded by the its question-------- # This line may be removed in the actual file
+-- -----Question number should be commented---------------#This line may be removed in the actual file
