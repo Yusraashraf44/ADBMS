@@ -287,3 +287,23 @@ Query OK, 0 rows affected (0.01 sec)
 mysql> DELIMITER ;
 mysql> CALL listbooknamewithaccno(@bname)
     -> select @bname As booksname;
+
+errormysql> DELIMITER ;
+mysql> CALL listbooknamewithaccno(@bname)
+    -> select @bname As booksname;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select @bname As booksname' at line 2
+mysql> DELIMITER //
+mysql> create function listbooks()
+    -> RETURNS varchar(100)
+    -> READS SQL DATA
+    -> Begin 
+    -> Declare bname varchar(100);
+    -> select title into bname where accno=1;
+    -> RETURN bname;
+    -> End //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> 
+
+
+
