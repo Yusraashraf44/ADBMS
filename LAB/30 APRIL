@@ -1,0 +1,75 @@
+[mca@localhost ~]$ mySQL 24mca60
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 51
+Server version: 8.0.41 Source distribution
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use 24mca60
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables
+    -> ;
++-------------------+
+| Tables_in_24mca60 |
++-------------------+
+| books             |
+| issues            |
+| libary            |
+| members           |
+| publishers        |
+| returns           |
+| studentsview      |
+| studentview       |
++-------------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from books;
++-------+------------------------+---------------------+-------+-----------+--------------+-------------+
+| accno | title                  | author              | price | type      | availability | publisherid |
++-------+------------------------+---------------------+-------+-----------+--------------+-------------+
+|     1 | The Great Gatsby       | F. Scott Fitzgerald | 10.99 | lending   | yes          |           1 |
+|     2 | To Kill a Mockingbird  | Harper Lee          | 12.50 | reference | no           |           2 |
+|     3 | 1984                   | George Orwell       | 15.75 | lending   | yes          |           3 |
+|     4 | The Catcher in the Rye | J.D. Salinger       |  9.99 | reference | no           |           4 |
+|     5 | The Hobbit             | J.R.R. Tolkien      | 14.20 | lending   | yes          |           5 |
+|     6 | Harry Potter           | J.K. Rowling        | 20.00 | lending   | yes          |           6 |
++-------+------------------------+---------------------+-------+-----------+--------------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> DELIMITER $$
+mysql> create trigger 
+    -> ;
+    -> //
+    -> $$
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+//' at line 2
+mysql> DELIMITER $$
+mysql> create function displayprice() RETURNS float (6,2) READS SQL DATA begin declare bprice float(6,2); select price into bprice from books where accno=1; RETURN bprice;
+    -> end $$
+Query OK, 0 rows affected, 2 warnings (0.00 sec)
+
+mysql> CALL displayprice();
+    -> $$
+ERROR 1305 (42000): PROCEDURE 24mca60.displayprice does not exist
+mysql> SELECT displayprice();
+    -> 
+    -> $$
++----------------+
+| displayprice() |
++----------------+
+|          10.99 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> 
+
